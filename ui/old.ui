@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QListWidget" name="serverexample_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>50</y>
+     <width>231</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Общие материалы</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Курсовая работа сем1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>&gt;[Р] Исправления и советы студентам</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>&gt;[Р] Материалы для консультаций</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>&gt;[Ф] Требования к оформлению ГОСТ</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ПнаЯВУ</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>&gt; [Ф] Манифест студента v0.1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>СММиФ</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ТВиМС</string>
+    </property>
+   </item>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
