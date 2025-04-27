@@ -1,0 +1,49 @@
+CREATE TABLE IF NOT EXISTS servers (
+local_id INTEGER AUTO_INCREMENT	PRIMARY KEY,
+uuid VARCHAR(36) NOT NULL UNIQUE,
+is_your BOOLEAN NOT NULL DEFAULT FALSE,
+host_uuid VARCHAR(36) NOT NULL,
+items_amount INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS your_servers_privacy (
+id INTEGER PRIMARY KEY,
+visibility ENUM('BY_HOST', 'BY_NAME', 'BY_PASSWORD') NOT NULL DEFAULT 'BY_NAME',
+password_hash VARCHAR(255),
+password_salt VARCHAR(255),
+UNIQUE KEY (password_hash, password_salt),
+FOREIGN KEY (id) REFERENCES servers(local_id)
+);
+
+CREATE TABLE IF NOT EXISTS servers_info (
+id INTEGER PRIMARY KEY,
+name VARCHAR(32) NOT NULL,
+description VARCHAR (255),
+last_active DATETIME,
+FOREIGN KEY (id) REFERENCES servers(local_id)
+);
+
+CREATE TABLE IF NOT EXISTS servers_items (
+item_local_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+server_id INTEGER NOT NULL,
+item_server_id INTEGER NOT NULL,
+UNIQUE KEY (server_id, item_server_id),
+FOREIGN KEY (server_id) REFERENCES servers(local_id)
+);
+
+CREATE TABLE IF NOT EXISTS items_data (
+id INTEGER PRIMARY KEY,
+kind ENUM('FILE', 'DIRECTORY') NOT NULL DEFAULT 'DIRECTORY',
+parent_item INTEGER NOT NULL DEFAULT 0,
+location ENUM('DISK', 'CLOUD') NOT NULL,
+destination VARCHAR (255),
+FOREIGN KEY (id) REFERENCES servers_items(item_local_id),
+FOREIGN KEY (parent_item) REFERENCES items_data(id) ON DELETE SET -1
+);
+
+CREATE TABLE IF NOT EXISTS items_metadata (
+id INT PRIMARY KEY,
+created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+last_edited DATETIME,
+FOREIGN KEY (id) REFERENCES servers_items(item_local_id)
+);
